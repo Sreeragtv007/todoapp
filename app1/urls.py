@@ -5,4 +5,5 @@ urlpatterns = [
     
     path('',views.todo,name='todo'),
     path('delet/<str:pk>/',views.delet,name='delet'),
+    path('update/<str:pk>/',views.update,name='update'),
 ]

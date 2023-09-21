@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Task
+from .form import TaskForm
 
 # Create your views here.
 
@@ -8,8 +9,8 @@ from .models import Task
 def todo(request):
     obj = Task.objects.all()
     context = {'obj': obj}
-    if request.POST:
-        data = request.POST.get('todolist')
+    if request.GET:
+        data = request.GET.get('todolist')
         task = Task(name=data)
         task.save()
         return redirect('todo')
@@ -23,3 +24,18 @@ def delet(request,pk):
 
 
     return render(request,'todo.html')
+
+
+
+def update(request,pk):
+    obj=Task.objects.get(id=pk)
+    form=TaskForm(instance=obj)
+    context={'form':form}
+    if request.POST:
+        form=TaskForm(request.POST,instance=obj)
+        if form.is_valid:
+            form.save()
+            return redirect('todo')
+    
+    
+    return render(request,'update.html',context)
