@@ -46,7 +46,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Todo item</th>
                        
-                        <th scope="col">Actions</th>
+                        <th scope="col">last updated or added</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -61,8 +61,11 @@
                         <th scope="row"></th>
                         <td>{{i.name}}</td>
                         
+                        <td>{{i.date}}</td>
+                        
                         <td>
                           <button type="submit" class="btn btn-danger"><a href="{% url 'delet' i.id %}">delet</a></button>
+                          
                           <button type="submit" class="btn btn-success ms-1"><a href="{% url 'update' i.id %}" style="color: antiquewhite;">update</a></button>
                         </td>
                       </tr>
